@@ -1,0 +1,57 @@
+#include <iostream>
+using namespace std;
+
+class F {
+public:
+    virtual void setWymiar(int x) = 0;
+    virtual double pole() = 0;   // dodane, aby móc wywołać przez wskaźnik
+};
+
+class kwadrat : public F {
+private:
+    int bok;
+public:
+    void setWymiar(int x) override {
+        bok = x;
+    }
+
+    double pole() override {
+        return bok * bok;
+    }
+};
+
+class kolo : public F {
+private:
+    int promien;
+public:
+    void setWymiar(int x) override {
+        promien = x;
+    }
+
+    double pole() override {
+        return 3.14 * promien * promien;
+    }
+};
+
+int main()
+{
+    kwadrat k;
+    kolo ko;
+
+    int in1, in2;
+
+    F* wsk1;
+    wsk1 = &k;
+
+    F* wsk2;
+    wsk2 = &ko;
+
+    cin >> in1 >> in2;
+
+    wsk1->setWymiar(in1);
+    wsk2->setWymiar(in2);
+
+    cout << k.pole() << " " << ko.pole() << endl;
+
+    return 0;
+}
