@@ -1,0 +1,45 @@
+#include <iostream>
+using namespace std;
+
+class Wielokat {
+protected:
+    int szerokosc, wysokosc;
+public:
+    void ustaw(int a, int b) {
+        szerokosc = a;
+        wysokosc = b;
+    }
+};
+
+// Klasa pochodna: Trójkąt
+class Trojkat : public Wielokat {
+public:
+    int getPole() {
+        return (szerokosc * wysokosc) / 2; // wzór: (a * h) / 2
+    }
+};
+
+// Klasa pochodna: Prostokąt
+class Prostokat : public Wielokat {
+public:
+    int getPole() {
+        return szerokosc * wysokosc; // wzór: a * b
+    }
+};
+
+int main() {
+    Trojkat T;
+    Prostokat P;
+    int a1, b1, a2, b2;
+
+    // wczytaj dane: 1 2 1 2
+    cin >> a1 >> b1 >> a2 >> b2;
+
+    T.ustaw(a1, b1);
+    P.ustaw(a2, b2);
+
+    // wypisz pole trójkąta i prostokąta
+    cout << T.getPole() << " " << P.getPole();
+
+    return 0;
+}
