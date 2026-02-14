@@ -1,0 +1,87 @@
+#include <iostream>
+using namespace std;
+
+class Kompleks {
+private:
+double re, im;
+
+public:
+
+Kompleks() : re(0), im(0) {}
+
+
+Kompleks(double r, double i) : re(r), im(i) {}
+
+
+Kompleks operator+(const Kompleks& k) const {
+return Kompleks(re + k.re, im + k.im);
+}
+
+
+Kompleks operator-(const Kompleks& k) const {
+return Kompleks(re - k.re, im - k.im);
+}
+
+
+Kompleks operator*(const Kompleks& k) const {
+return Kompleks(re * k.re - im * k.im,
+re * k.im + im * k.re);
+}
+
+
+Kompleks operator/(const Kompleks& k) const {
+double denom = k.re * k.re + k.im * k.im;
+return Kompleks(
+(re * k.re + im * k.im) / denom,
+(im * k.re - re * k.im) / denom
+);
+}
+
+
+void display() const {
+cout << re;
+if (im >= 0)
+cout << " + " << im << "i";
+else
+cout << " - " << -im << "i";
+}
+};
+
+int main() {
+double a, b, c, d;
+cin >> a >> b >> c >> d;
+
+Kompleks z1(a, b);
+Kompleks z2(c, d);
+
+cout << "First complex number: ";
+z1.display();
+cout << endl;
+
+cout << "Second complex number: ";
+z2.display();
+cout << endl;
+
+Kompleks sum = z1 + z2;
+Kompleks diff = z1 - z2;
+Kompleks prod = z1 * z2;
+Kompleks quotient = z1 / z2;
+
+cout << "Addition result: ";
+sum.display();
+cout << endl;
+
+cout << "Subtraction result: ";
+diff.display();
+cout << endl;
+
+cout << "Multiplication result: ";
+prod.display();
+cout << endl;
+
+cout << "Division result: ";
+quotient.display();
+cout << endl;
+
+return 0;
+}
