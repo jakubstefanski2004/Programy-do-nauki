@@ -1,0 +1,54 @@
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+class Rectangle
+{
+    int length;
+    int width;
+    
+    public:
+    Rectangle(double l=0, double w=0)
+    {
+        length=l;
+        width =w;
+    }
+    
+    double area() const
+    {
+        return length*width;
+    }
+};
+
+int main()
+{
+    const int MAX=100;
+    Rectangle tab[MAX];
+    
+    double l,w;
+    int n=0;
+    
+    while(cin>>l>>w)
+    {
+        if(l<=0 || w<=0)
+        break;
+        else if(n<MAX)
+        {
+            tab[n]=Rectangle(l,w);
+            n++;
+        }
+    }
+    
+    double min_area=tab[0].area();
+    for(int i=1;i<n;i++)
+    {
+        if(tab[i].area()<min_area)
+        {
+            min_area=tab[i].area();
+        }
+    }
+    
+    cout<<static_cast<int>(min_area);
+    
+    return 0;
+}
