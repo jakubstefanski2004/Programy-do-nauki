@@ -1,0 +1,26 @@
+#include <iostream>
+#include <cctype>
+using namespace std;
+
+// Szablon ogólny
+template <typename T>
+T maximum(T a, T b) {
+    return (a > b) ? a : b;
+}
+
+// Specjalizacja dla char
+template <>
+char maximum<char>(char a, char b) {
+    char A = tolower(a);
+    char B = tolower(b);
+
+    if (A > B) return a;
+    else return b;
+}
+
+int main() {
+    char a, b;
+    cin >> a >> b;
+    cout << maximum(a, b);
+    return 0;
+}
